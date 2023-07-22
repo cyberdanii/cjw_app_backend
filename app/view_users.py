@@ -7,6 +7,8 @@ from os import getenv
 from app.managers.db_manager import DbManager
 from fastapi import APIRouter
 from app.managers.file_manager import FileManager
+from app.managers.db_manager import DbManager
+
 
 users_view = APIRouter()
 
@@ -51,10 +53,14 @@ movies = [
 
 @users_view.get('/users', tags=['Users'], response_model= List[User],  dependencies=[Depends(JWTBearer())]) 
 def get_movies():
-    file_path = "app/db.json"
-    records = FileManager.read_json_file(path = file_path)
-    print(records)
+    # file_path = "app/db.json"
+    # records = FileManager.read_json_file(path = file_path)
+    # print(records)
 
+    # return JSONResponse(content=records, status_code=200)
+    
+    conn = DbManager.connection()
+    session = Session(engine)
     return JSONResponse(content=records, status_code=200)
 
 

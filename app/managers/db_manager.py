@@ -1,7 +1,13 @@
 import pymysql.cursors
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
 
 class DbManager:
 
+    def __init__(self):
+        self.connection()
 
     def execute(self, sql_query):
 
@@ -34,3 +40,14 @@ class DbManager:
                 result = cursor.fetchone()
 
                 return result
+            
+    def connection(self):
+        # Define the database connection
+        database_url = "mysql://root:root@localhost/cjw_db"
+
+        # Create the database engine
+        engine = create_engine(database_url)
+        SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+        # Declarar una clase base para tus modelos
+        Base = declarative_base()

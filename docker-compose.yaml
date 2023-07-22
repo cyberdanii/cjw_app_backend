@@ -19,7 +19,7 @@ services:
     # volumes:
     #     - ./init.sql:/data/application/init.sql
     environment:
-        MYSQL_DATABASE: homestead
+        MYSQL_DATABASE: cjw_db
         MYSQL_ROOT_USER: root
         MYSQL_ROOT_PASSWORD: root
         # MYSQL_USER: root
