@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  fast-api-app:
+    build: .
+    container_name: fapi-app-container
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/usr/src/application:rw
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000", "--reload"]
+    depends_on:
+      - db
+
+  db:
+    image: mysql
+    ports:
+        - "33061:3306"
+    # command: --init-file /data/application/init.sql
+    # volumes:
+    #     - ./init.sql:/data/application/init.sql
+    environment:
+        MYSQL_DATABASE: homestead
+        MYSQL_ROOT_USER: root
+        MYSQL_ROOT_PASSWORD: root
+        # MYSQL_USER: root
+        MYSQL_PASSWORD: root
+
+  cluster:
+    build: .
+    container_name: cluster_one
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./:/usr/src/application:rw
