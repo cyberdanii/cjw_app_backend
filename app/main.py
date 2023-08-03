@@ -6,11 +6,13 @@ from app.jwt_manager import create_token
 from os import getenv
 from app.managers.db_manager import DbManager
 from app.view_users import users_view
+from app.view_members import members_view
 
 app = FastAPI()  # instanciacion
 app.title = "Mi primera aplicacion con FastAPI"
 app.version = "1.0.0"
 app.include_router(users_view)
+app.include_router(members_view)
 
 movies = [
     {
@@ -48,7 +50,7 @@ def login(user: User):
 # -----------
 @app.get('/', tags=['home'])  # ruta de la API
 def message():
-    with open('app/home.html', 'r') as file:
+    with open('app/sources/templates/home.html', 'r') as file:
         response = file.read()
     return HTMLResponse(response)  # mensaje
 

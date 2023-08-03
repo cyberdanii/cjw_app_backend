@@ -4,10 +4,10 @@ services:
     build: .
     container_name: fapi-app-container
     ports:
-      - "5000:5000"
+      - "8080:8080"
     volumes:
       - ./:/usr/src/application:rw
-    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000", "--reload"]
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
     depends_on:
       - db
 
@@ -25,10 +25,10 @@ services:
         # MYSQL_USER: root
         MYSQL_PASSWORD: root
 
-  cluster:
-    build: .
-    container_name: cluster_one
-    ports:
-      - "5001:5000"
-    volumes:
-      - ./:/usr/src/application:rw
+  # cluster:
+  #   build: .
+  #   container_name: cluster_one
+  #   ports:
+  #     - "5001:5000"
+  #   volumes:
+  #     - ./:/usr/src/application:rw

@@ -32,7 +32,9 @@ class User(BaseModel):
     password: str
     start_date: str
 
-class Member(BaseModel):
+class Members(BaseModel):
+    __tablename__ = "members"
+    
     id: Optional[int] = None
     name: str
     role: str

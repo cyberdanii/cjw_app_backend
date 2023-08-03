@@ -40,8 +40,9 @@ class DbManager:
                 result = cursor.fetchone()
 
                 return result
-            
-    def connection(self):
+
+    @staticmethod
+    def connection():
         # Define the database connection
         database_url = "mysql://root:root@localhost/cjw_db"
 
@@ -51,3 +52,5 @@ class DbManager:
 
         # Declarar una clase base para tus modelos
         Base = declarative_base()
+
+        return (SessionLocal, Base)
