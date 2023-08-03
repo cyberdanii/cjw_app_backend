@@ -5,4 +5,3 @@ PyJWT
 PyMySQL
 sqlalchemy
 mysqlclient
-modin
